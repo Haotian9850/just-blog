@@ -195,6 +195,17 @@ router.post('/edit-page/:slug', function(req, res){
     })
 })
 
+/*
+* GET delete page
+ */
+router.get('/delete/page/:id', function(req, res){
+    //get all pages from database
+    Page.findByIdAndRemove(req.params.id, function(err){
+        if(err) return console.log(err);
+        req.flash('success', 'Page deleted!');    //for BS msg styling
+        res.redirect('/admin/pages/');
+    });
+})
 
 //exports
 module.exports = router;
