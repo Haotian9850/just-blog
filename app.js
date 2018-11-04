@@ -72,8 +72,11 @@ app.use(function (req, res, next) {
 //set up routing
 var pages = require('./routes/pages.js');
 var adminPages = require('./routes/admin_pages.js');
+var adminCategories = require('./routes/admin_categories.js');
+
 
 app.use('/admin/pages', adminPages);    //check this first
+app.use('/admin/categories', adminCategories);
 app.use('/', pages);
 
 
