@@ -17,18 +17,13 @@ router.get('/', function(req, res){
 });
 
 /*
-* GET add page
+* GET add category
  */
 router.get('/add-page', function(req, res){
     var title = "";
-    var slug = "";
-    var content = "";
 
-    res.render('admin/add_page', {
-        //print variable in the view
-        title: title,
-        slug: slug,
-        content: content
+    res.render('admin/add_category', {
+        title: title
     });
 });
 
