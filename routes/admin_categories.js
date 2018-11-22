@@ -28,51 +28,42 @@ router.get('/add-page', function(req, res){
 });
 
 /*
-* POST add page
+* POST add category
  */
-router.post('/add-page', function(req, res){
+router.post('/add-category', function(req, res){
     //validate title and content
     req.checkBody('title', 'Title must have a value').notEmpty();
-    req.checkBody('content', 'Content must have a value').notEmpty();
 
     var title = req.body.title; //body parser
-    var slug = req.body.slug.replace(/\s+/g, '-').toLowerCase();   //replace all spaces with dash
-    if(slug == "") slug = title.replace(/\s+/g, '-').toLowerCase();
-
-    var content = req.body.content; 
+    var slug = title.replace(/\s+/g, '-').toLowerCase();
     var errors = req.validationErrors();
 
     if(errors){
-        res.render('admin/add_page', {
+        res.render('admin/add_category', {
             errors: errors,
             title: title,
-            slug: slug,
-            content: content
-        })
+        });
     }else{
         //make sure slug is unique
         Page.findOne({slug: slug}, function(err, page){
-            if(page){
-                //we have a problem...
-                req.flash('danger', 'Page slug already exists. Choose another.');   //for BS msg styling
-                res.render('admin/add_page', {
-                    title: title,
-                    slug: slug,
-                    content: content
+            if(category){
+                req.flash('danger', 'Category title exists, please choose another!');
+                res.render('admin/add_category', {
+                    title: title
                 });
             }else{
-                //save page to database
-                var page = new Page({
-                    //save fields
+                var category = new Category({
                     title: title,
-                    slug: slug,
-                    content: content,
-                    sorting: 100
+                    slug: slug
                 });
-                page.save(function(err){
-                    if(err) return console.log(err);
-                    req.flash('success', 'Page added!');    //for BS msg styling
-                    res.redirect('/admin/pages');
+
+                //save new category
+                category.save(function(err){
+                    if(err){
+                        return console.log(err);
+                    }
+                    res.flash('success', 'New Category added!');
+                    res.redirect('/admin/categories');
                 });
             }
         });
@@ -87,46 +78,21 @@ router.post('/add-page', function(req, res){
     })
 })
 
-/*
-* POST reorder pages
- */
-router.post('/reorder-pages', function(req, res){
-    var ids = req.body['id[]'];
-    var count = 0;
-    for(var i = 0; i < ids.length; ++ i){
-        var id = ids[i];
-        ++ count;
-        
-        (function(count){
-            Page.findById(id, function(err, page){
-                page.sorting = count;
-                page.save(function(err){
-                    return console.log(err);
-                });
-            });
-        })(count);
-    }
-});
-
 
 /*
- * GET edit page
+ * GET edit category
  */
-router.get('/edit-page/:slug', (req, res) => {
-    Page.findOne({slug : req.params.slug}).then((page) => {
-      if(!page) { //if page not exist in db
-        return res.status(404).send('Page not found');
-      }
-      res.render('admin/edit_page', { //page  exist
-        title: page.title,
-        slug: page.slug,
-        content: page.content,
-        id: page._id
-      });
-    }).catch((e) => {//bad request 
-      res.status(400).send(e);
+router.get('/edit-category/:id', function(req, res){
+    Category.findById(req.params.id, function(err, category){
+        if(err){
+            return console.log(err);
+        }
+        res.render('admin/edit_category', {
+            title: category.title,
+            id: category_id
+        });
     });
-  });
+});
 
 /*
 * POST edit page
