@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var expressValidator = require('express-validator');
 
+var fileUpload = require('express-fileupload');
+
+
 //connect to MongoDB
 mongoose.connect(config.database);
 var db = mongoose.connection;
@@ -27,6 +30,15 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 //set global error var
 app.locals.error = null;    //to avoid errorNotDefined error!
+
+/* middleware for express file upload */
+app.use(fileUpload());
+
+
+
+
+
+
 
 //body parser middleware
 //parse application/x-www-form-urlencoded
@@ -73,11 +85,15 @@ app.use(function (req, res, next) {
 var pages = require('./routes/pages.js');
 var adminPages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
+var adminArticles = require('./routes/admin_articles.js');
+
 
 
 app.use('/admin/pages', adminPages);    //check this first
 app.use('/admin/categories', adminCategories);
+app.use('/admin/articles', adminArticles);
 app.use('/', pages);
+
 
 
 //start server
