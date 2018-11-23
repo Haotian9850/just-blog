@@ -1,0 +1,46 @@
+<%-  include('../_layouts/adminheader') %>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <h2 class="page-title">Pages</h2>    
+    
+    <a href="/admin/add-article" class="btn btn-primary">Add a new article</a>
+
+    <% if(count > 0){ %>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="home">
+                <th>Article</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Category</th>
+                <th>Cover Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% articles.forEach(function(article){ %>
+                <tr>
+                    <td><%= article.title %></td>
+                    <td><%= article.category %></td>
+
+                    <td>
+                        <% if (article.image == "") { %>
+                            <img src="images/noimage.png">
+                        <% }else{ %>
+                            <img src="article/images/<% article.id %>/<% article.image %>">
+                            <% } %>
+                    </td>
+
+                    <td><%= article.image %></td>
+                    
+                    <td><a href="/admin/articles/edit-/<%= article._id %>">Edit</td>
+                        <td><a class="confirmDeletion" href="/admin/pages/delete-article/<%= article._id %>">Delete</td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+<% }else{ %>
+    <h3 class="text-center">There are no articles.</h3>
+<% } %>
+<%-  include('../_layouts/adminfooter') %>

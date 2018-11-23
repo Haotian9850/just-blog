@@ -35,11 +35,6 @@ app.locals.error = null;    //to avoid errorNotDefined error!
 app.use(fileUpload());
 
 
-
-
-
-
-
 //body parser middleware
 //parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -68,8 +63,23 @@ app.use(expressValidator({
             msg : msg,
             value : value
         };
+    },
+    
+    customValidators : {
+        isImage: function(value, fileName){
+            var extension = (path.extname(fileName)).toLowerCase();
+            switch(extension){
+                case '.jpg': return '.jpg';
+                case '.jpeg': return '.jpeg';
+                case '.png': return '.png';
+                case '': return '.jpg';
+                default: return false;
+            }
+        }
     }
 }));
+
+
 
 //express messages middleware
 app.use(require('connect-flash')());
