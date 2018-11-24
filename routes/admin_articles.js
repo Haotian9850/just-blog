@@ -200,65 +200,79 @@ router.get('/edit-product/:id', function(req, res){
 });
 
 /*
-* POST edit page
+* POST edit article
  */
-router.post('/edit-page/:id', function(req, res){
-    //validate title and content
-    req.checkBody('title', 'Title must have a value').notEmpty();
-    req.checkBody('content', 'Content must have a value').notEmpty();
+router.post('/edit-product/:id', function(req, res){
+    var imageFile = typeof req.files.image !== "undefined" ? req.files.image.name : "";
 
-    var title = req.body.title; //body parser
-    var slug = req.body.slug.replace(/\s+/g, '-').toLowerCase();   //replace all spaces with dash
-    if(slug == "") slug = title.replace(/\s+/g, '-').toLowerCase();
+    req.checkBody('title', 'Title must have a value.').notEmpty();
+    req.checkBody('summary', 'Summary must have a value.').notEmpty();
+    req.checkBody('image', 'You must upload at least one image to continue').notEmpty();
 
-    var content = req.body.content; 
-    var errors = req.validationErrors();
+    var title = req.body.title;
+    var slug = title.replace(/\s+/g, '-').toLowerCase();
+    var summary = req.body.summary;
+    var category = req.body.category;
+    var pimage = req.body.pimage;
     var id = req.params.id;
+
+    var errrors = req.validationErrors();
+
     if(errors){
-        res.render('admin/add_page', {
-            errors: errors,
-            title: title,
-            slug: slug,
-            content: content
-        })
+        req.session.errors = errors;
+        res.redirect('/admin/articles/edit-article' + id);
     }else{
-        //make sure slug is unique
-        Page.findOne({slug: slug, _id: {'$ne':id}}, function(err, page){
-            if(page){
-                //we have a problem...
-                req.flash('danger', 'Page slug already exists. Choose another.');   //for BS msg styling
-                res.render('admin/add_page', {
-                    title: title,
-                    slug: slug,
-                    content: content,
-                    id: id
-                });
+        Article.findOne({slug: slug, _id:{'$ne': id}}, function(err, a){
+            if(err){
+                console.log(err);
+            }
+            if(a){
+                req.flash('danger', 'Article title already exists. Please choose another');
+                res.redirect('/admin/products/edit-product/' + id);
             }else{
-                Page.findById(id, function(err, page){
-                    if(err) return console.log(err);
-                    page.title = title;
-                    page.slug = slug;
-                    page.content = content;
-                    //update page and save it to database
-                    page.save(function(err){
-                        if(err) return console.log(err);
-                        req.flash('success', 'Page added!');    //for BS msg styling
-                        res.redirect('/admin/edit-page/' + id);
+                Article.findById(id, function(Err, a){
+                    if(err){
+                        console.log(err);
+                    }
+
+                    a.title = title;
+                    a.slug = slug;
+                    a.summary = summary;
+                    a.category = category;
+                    if(imageFile != ""){
+                        //update
+                        a.image = imageFile;
+                    }
+                    a.save(function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                        if(imageFile != ""){
+                            if(aimage != ""){
+                                fs.remove('public/article_images/' + id + '/' + aimage, function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                });
+                            }
+
+                            var articleImage = req.files.image;
+                            var path = 'public/article_images/' + article._id + '/' + imageFile;
+
+                            articleImage.mv(path, function(err){
+                                return console.log(err);
+                            });
+                        }
+
+                        //success!
+                        req.flash('success', 'New article added!');
+                        res.redirect('/admin/articles');
                     });
                 });
-
             }
         });
-
     }
-
-    res.render('admin/add_page', {
-        //print variable in the view
-        title: title,
-        slug: slug,
-        content: content
-    })
-})
+});
 
 /*
 * GET delete page
