@@ -150,43 +150,55 @@ router.post('/add-article', function(req, res){
     })
 })
 
+
 /*
-* POST reorder pages
+ * GET edit article
  */
-router.post('/reorder-pages', function(req, res){
-    var ids = req.body['id[]'];
-    var count = 0;
-    for(var i = 0; i < ids.length; ++ i){
-        var id = ids[i];
-        ++ count;
-        
-        (function(count){
-            Page.findById(id, function(err, page){
-                page.sorting = count;
-                page.save(function(err){
-                    return console.log(err);
-                });
-            });
-        })(count);
+router.get('/edit-product/:id', function(req, res){
+
+    var errors; //errors array
+
+    if(req.session.errors){
+        errors = req.session.errors;
     }
-});
+    req.session.errors = null;  //default, if no error
+    
+    Category.find(function(err, categories){
 
-
-/*
- * GET edit page
- */
-router.get('/edit-page/:id', function(req, res) {
-    Page.findById(req.params.id, function(err, page){
-        if(err){
-            return console.log(err);
-        }
-        res.render('admin/edit_page', {
-            title: page.title,
-            slug: page.slug,    //will not be necessary...
-            content: page.content,
-            id: page._id
+        //find a particular article
+        Article.find(req.params.id, function(err, a){
+            if(err){
+                console.log(err);
+                res.redirect('/admin/articles');
+            }else{
+                //get gallery
+                var glalleryDir = 'public/article_images/' + a._id + '/gallery';
+                var galleryImages = null;
+                
+                fs.readdir(galleryDir, function(err, files){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        galleryImages = files;
+                        //render the view
+                        res.render('admin/edit_product', {
+                            title: a.title,
+                            errors: errors,
+                            summary: a.summary,
+                            categories: categories,
+                            category: a.category.replace(/\s+/g, '-').toLowerCase(),  //replace all spaces with -
+                            image: a.image,
+                            galleryImages: galleryImages
+                        });
+                    }
+                });
+            }
+            
         });
+
+
     });
+
 });
 
 /*
