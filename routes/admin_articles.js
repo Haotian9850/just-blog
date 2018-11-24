@@ -188,15 +188,13 @@ router.get('/edit-product/:id', function(req, res){
                             categories: categories,
                             category: a.category.replace(/\s+/g, '-').toLowerCase(),  //replace all spaces with -
                             image: a.image,
-                            galleryImages: galleryImages
+                            galleryImages: galleryImages,
+                            id: a._id
                         });
                     }
                 });
-            }
-            
+            } 
         });
-
-
     });
 
 });
