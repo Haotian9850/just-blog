@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet"> <!-- [0] -->
+    <title>Haotian</title>
+    <!-- custom CSS. To be kept temporarily -->
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+    <!-- Bootstrap core CSS -->
+    <link href="resources/css/bootstrap/bootstrap.min.css" rel="stylesheet"> <!-- [1] -->
+    <!-- header & footer CSS -->
+    <link rel="stylesheet" type="text/css" href="resources/css/header.css"> <!-- [2] -->
+    <link rel="stylesheet" type="text/css" href="resources/css/footer.css"> <!-- [3] -->
+    <!-- custom CSS for front page -->
+    <link href="resources/css/bootstrap/carousel.css" rel="stylesheet"> <!-- [4] -->
+    <link href="resources/css/index_bootstrap_supplement.css" rel="stylesheet"> <!-- [5] -->
+    <!-- custom CSS for contact page -->
+    <link rel="stylesheet" type="text/css" href="resources/css/style_get_in_touch.css"> <!-- [6] -->
+    <link rel="stylesheet" type="text/css" href="resources/css/style_form.css"> <!-- [7] -->
+    <!-- custom CSS for article archive -->
+    <link rel="stylesheet" type="text/css" href="resources/css/article_directory.css"> <!-- [8] -->
+    <!-- custom CSS for inividual article entry. NOT TO BE INCLIDED IN ARTICLE ARCHIVE! -->
+    <link rel="stylesheet" type="text/css" href="resources/css/article.css"> <!-- [9] -->
+  </head>
+  <body>
+    <!-- nav bar based on Bootstrap 4 -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+         <div class="container-fluid">
+           <div class="navbar-header">
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+             </button>
+             <a class="navbar-brand" href="index.php"><img class = "logo" src="resources/img/common_img/tiger_colored.png" alt="UVa"></a>
+           </div>
+           <div class="collapse navbar-collapse" id="myNavbar">
+             <ul class="nav navbar-nav">
+               <li><a href="./?action=archive">Articles</a><li>
+               <!-- <li><a href="./?action=getInTouch">Get in Touch</a></li> -->
+               <li><a href="#">简体中文</a></li>
+             </ul>
+           </div>
+         </div>
+       </nav>
+
+
+
+
+<!----------------------- Disable interfering stylesheets ----------------------->
+  <script>
+    document.styleSheets[6].disabled = true;
+    document.styleSheets[7].disabled = true;
+    document.styleSheets[8].disabled = true;
+    document.styleSheets[9].disabled = true;
+  </script>
+
+  <!-- front page carousel based on Bootstrap 4 -->
+    <div class="carousel-wrapper">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+          <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <img class="first-slide" src="resources/css/img/twisty_road.jpg" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Climb...up Mt. Hamilton!</h1>
+                <a class="btn btn-full" href="/?action=viewArticle&articleId=2">Read full story</a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img class="second-slide" src="resources/img/pearl_harbor_attack.jpg" alt="Second slide">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Impact of Foreign Events on America's Racial Dynamics: World War II and the 1980s Trade War</h1>
+                <a class="btn btn-full" href="/?action=viewArticle&articleId=6">Read full article</a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img class="third-slide" src="resources/img/nlp_code.png" alt="Third slide">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Using Stanford NLP in Python NLTK</h1>
+                <a class="btn btn-full" href="/?action=viewArticle&articleId=5">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.carousel -->
+    </div>
+
+    <!---- text content -->
+<div class="row">
+  <div class="col-sm-7">
+    <div class="about-me">
+      <div class="title">
+          <h2>
+              About me
+          </h2>
+      </div>
+              <!--Accordion wrapper-->
+          <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+              <!-- Accordion card -->
+              <div class="card">
+                  <!-- Card header -->
+                  <div class="card-header" role="tab" id="headingOne">
+                      <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          <h5 class="mb-0">
+                              As a Computer Science Student <i class="fa fa-angle-down rotate-icon"></i>
+                          </h5>
+                      </a>
+                  </div>
+                  <!-- Card body -->
+                  <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordionEx">
+                      <div class="card-body">
+                        <div class="intro">
+                          <p>
+                            "Computer Science is no more about computers than astronomy is about telescopes (<i>Edsger Dijkstra</i>)".
+                          </p>
+                          <p>
+                            <b><i>Seeking summer 2019 internship in the tech industry!</i></b>
+                          </p>
+                          <p>
+                            A third-year Computer Science student of the University of Virginia School of Engineering and Applied Sciences (2016 - 2020) majoring in Computer Science. Primary interests in computer science: web development (front-end web design, full-stack web application), machine learning (natural language processing). Strong background in Natural Language Processing, project & work experience in web development in the FinTech industry.
+                          </p>
+                          <p>
+                            <b><i>What I learned from past project and work experiences:</i></b>
+                          </p>
+                          <ul>
+                            <li>
+                              <b>NLP:</b> how crawler & grabber of massive target websites work, how to perform natural language processing on data returned from crawling (tokenization, NER and sentimental analysis) and generate readable reports; advantages of various NLP toolkits;
+                            </li>
+                            <li>
+                              <b>FinTech:</b> how cross-border payment works, what can be done to improve customer experience while paying internationally, and how to integrate payment channels from different service provider & card issuers.
+                            </li>
+                            <li>
+                              <b>Full-stack Web Development: </b> how to build "easy-to-use" interfaces that "feels" intuitive; basic UI/UX concepts; use of front-end frameworks; how to engineer pipelines between customer-facing interfaces and back-end databases; how a CMS works & how to build one from scratch.
+                            </li>
+                          </ul>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Accordion card -->
+              <!-- Accordion card -->
+              <div class="card">
+                  <!-- Card header -->
+                  <div class="card-header" role="tab" id="headingTwo">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          <h5 class="mb-0">
+                              As an Astronomy Major
+                          </h5>
+                      </a>
+                  </div>
+                  <!-- Card body -->
+                  <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordionEx">
+                      <div class="card-body">
+                        <div class="intro">
+                          <p>
+                            Ever since I was little, I was always fascinated by the idea of "worlds beyond our own". Primary interest in Astronomical research: Planetary Science / exoplanet observing techniques. Research experience in high-altitude balloon-based telescopes.
+                          </p>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Accordion card -->
+              <!-- Accordion card -->
+              <div class="card">
+                  <!-- Card header -->
+                  <div class="card-header" role="tab" id="headingThree">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          <h5 class="mb-0">
+                              As a Collegiate Cyclist <i class="fa fa-angle-down rotate-icon"></i>
+                          </h5>
+                      </a>
+                  </div>
+                  <!-- Card body -->
+                  <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordionEx">
+                      <div class="card-body">
+                        <div class="intro">
+                          <p>
+                              I am a driven twenty-year-old student of the University of Virginia grown up in Guangzhou, China.
+                          </p>
+                          <p>
+                             Having always fascinated by the immense possibitliy space offers and the prospect of a multi-panetary civilization, I chose to study Astronomy and Computer Engineering (later Computer Science) at the University of Virginia, the first American University that offered bachelor's degrees in Astronomy in Charlottesville, Central Virginia.
+                          </p>
+                          <p>
+                              Concurrent to my rapidly broadening knowledge and passion for my fields of studies was an abrupt transformation
+                              of mind. Experiencing the drastic cultural shift from China to the U.S. at the age of 17, I suddenly became afraid of being “just” one of the many Asian students residing in the United States, who, for conceivable reasons, have yet to escaped from largely negative media portrayal and
+                              the seemingly harmless classification of "model minority".
+                          </p>
+                          <p>
+                            Struggling to find myself a true identity, I picked up an Asian American history class, spent some sleepless nights in Kellogg, and, at some point, decided to try road cycling. Don’t get me wrong-I was never considered an athlete under any circumstances or someone with exceptional physical capabilities. Nor does my family have a strong background in any sport or traditions to support a athletic son. While I had fallen in love with bikes at a very young age, my scope of riding was limited to just middle school commuting, some long-distance weekend rides, and one local teenager mountain bike race.
+                          </p>
+                          <p>
+                              Nevertheless, road cycling has became a somewhat central part to how I now perceive myself. The unique cycling scene in Charlottesville and broader Atlantic region has helped elevate me from an absolute road newbie to a somewhat ambitious cyclist. After some great but brief time racing in the ACCC (Atlantic Collegiate Cycling Conference) and constant friend-making, I became determined to pursue higher categories in this sport, and move up the ladder as much as possible.
+                          </p>
+                          <p>
+                              Some may question my motive: after all, I might never attempt to claim to be specially talented in this
+                              sport and reach the professional rank - so why bother spending so much time and resources? To a certain degree,
+                              these doubts are true. But perhaps more importantly, entering the sport was where I learned the benefits of persistence, self-discipline and openmindedness. Through pedaling, I have gained the ability to be dedicated to one thing and defy some of my deepest concerns and fears. To this end, my cycling career has helped me a lot, and I’ll be more than happy to just keep it happening.
+                          </p>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Accordion card -->
+          </div>
+    </div> <!--about me-->
+    <div class="about-this-site">
+      <div class="title">
+          <h2>
+              About this site
+          </h2>
+      </div>
+      <div class="intro">
+          <p>
+              It is now an era of rapid digitization and cybernetic technology. Usually I would think of the Internet as a physical place like the wild west, and this site being my house - so here it is! I decided to acquire this URL of my name and birth and put together this site along with a custom CMS, <code>haotian9850.com</code> from scratch with HTML, CSS, some PHP and JavaScript. Yes, this site is still using the LAMP stack (something you propably don't see that often on today's Internet, lol)! I have a future plan to refactor this site's CMS with MEAN (or MERN?), so check back often!
+          </p>
+          <p>
+              Wanna follow me on Strava? <a href="https://www.strava.com/athletes/17992820">Follow me on Strava!</a>
+          </p>
+          <div class="row">
+              <div class="widget-embed">
+                      <iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/17992820/latest-rides/a980181341e54f2cbd47f8c8b341c6db9dd55e9c'></iframe>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-5">
+    <div class="article-list-wrapper">
+      <div class="title">
+        <h2>
+          Latest Articles
+        </h2>
+      </div>
+    <!-- CMS article listing. DO NOT MODIFY! -->
+          <ul class="article-list">
+                                <li>
+                        <a class="article-title" href=".?action=viewArticle&amp;articleId=1">Test article</a>
+                        <span class="publication-date">24 July</span>
+                        <p class="summary">This is a test article </p>
+                    </li>
+                                <li>
+                        <a class="article-title" href=".?action=viewArticle&amp;articleId=5">Using Stanford CoreNLP in Python NLTK</a>
+                        <span class="publication-date">28 June</span>
+                        <p class="summary">A brief look on how to use Stanford CoreNLP server to perform simple NLP operations with Python's NLTK package</p>
+                    </li>
+                                <li>
+                        <a class="article-title" href=".?action=viewArticle&amp;articleId=2">Climb up Mt. Hamilton</a>
+                        <span class="publication-date">26 May</span>
+                        <p class="summary">While attending a 3-month internship in San Jose, California, I attempted the prestigious Mt. Hamilton climb 8 times. </p>
+                    </li>
+                                <li>
+                        <a class="article-title" href=".?action=viewArticle&amp;articleId=4">Race Recap-2018 Jefferson Cup Road Race</a>
+                        <span class="publication-date">29 April</span>
+                        <p class="summary">USAC Men's Cat 4 race recap of Charlottesville's annual Jefferson Cup road race</p>
+                    </li>
+                                <li>
+                        <a class="article-title" href=".?action=viewArticle&amp;articleId=3">Race Recap-13th William and Mary Tidewater Classic Road Race</a>
+                        <span class="publication-date">26 February</span>
+                        <p class="summary">ACCC Men's C race recap of the 13th William and Mary Tidewater Classic road race</p>
+                    </li>
+                      </ul>
+          <div class="row">
+            <div class="archive-link">
+              <p><a href="./?action=archive">All articles</a></p>
+            </div>
+          </div>
+    </div>
+    <div class="else">
+      <div class="title">
+          <h2>
+              Or else?
+          </h2>
+      </div>
+      <div class="intro">
+          <p>
+              Do you like history, or alternate history? Click below to learn about one of my favorite show, <i><b>The Man in the High Castle</b></i> and watch it on Amazon!
+          </p>
+          <div class="row">
+            <div class="widget-embed">
+              <iframe width="400" height="180" src="https://www.youtube-nocookie.com/embed/61souSkwDk4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+          <p>
+            It seems <i><b>Game of Thrones</b></i> and <i><b>Stranger Things</b></i> are taking over every screen these days, but underdogs like <i><b>The Expanse</b></i> are still entralling hardcore sci-fi lovers. Click below to watch an introductory video on <i><b>The Expanse</b></i>!
+          </p>
+          <div class="row">
+            <div class="widget-embed">
+              <iframe width="400" height="180" src="https://www.youtube-nocookie.com/embed/3cddE6PaW60?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- footer based on Bootstrap 4 -->
+        <footer>
+        <div class="footer-wrapper">
+        <div class="col-sm-8">
+          <div class="copyright">
+          <h6 class="copyright-text">Copyright @ haotian9850.com 2018. Some Rights Reserved.</h6>
+        </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="footer-nav-wrapper">
+          <ul class="footer-nav">
+            <li>
+              <a href="admin.php">
+                <img class="social-media" src="resources/img/common_img/login.png">
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/Haotian9850">
+                <img class="social-media" src="resources/img/common_img/gitlab.png">
+              </a>
+            </li>
+              <li>
+                <a href="https://www.facebook.com/profile.php?id=100004392167734">
+                  <img class="social-media" src="resources/img/common_img/facebook.png">
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/Haotian9850">
+                    <img class="social-media" src="resources/img/common_img/github.png">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/haotian-liu-9850/">
+                    <img class="social-media" src="resources/img/common_img/linkedin.png">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/haotian9850/">
+                    <img class="social-media" src="resources/img/common_img/instagram.png">
+                </a>
+            </li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        </footer>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src="resources/js/bootstrap/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+        <script src="resources/js/bootstrap/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="resources/js/bootstrap/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
+</html>
